@@ -19,9 +19,9 @@ public class UserController {
     private final Map<String, UserDto> loggedUsers = new HashMap<>();
 
     static {
-        users.put("raissa", createUser("raissa", "miki94", "Raissa", "Fadhlaoui"));
-        users.put("hamza", createUser("hamza", "bejito94", "Hamza", "Benketaf"));
-        users.put("rayan", createUser("rayan", "rarayan", "Rayan", "Fadhlaoui"));
+        users.put("raissa", createUser(1L, "raissa", "miki94", "Raissa", "Fadhlaoui"));
+        users.put("hamza", createUser(2L, "hamza", "bejito94", "Hamza", "Benketaf"));
+        users.put("rayan", createUser(3L, "rayan", "rarayan", "Rayan", "Fadhlaoui"));
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -46,8 +46,9 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-    private static UserDto createUser(String name, String password, String firstName, String lastName) {
+    private static UserDto createUser(Long id, String name, String password, String firstName, String lastName) {
         UserDto userDto = new UserDto();
+        userDto.setId(id);
         userDto.setName(name);
         userDto.setPassword(password);
         userDto.setFirstName(firstName);

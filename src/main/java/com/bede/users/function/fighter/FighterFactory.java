@@ -20,13 +20,13 @@ public class FighterFactory {
         this.characteristicsEnhancerProvider = characteristicsEnhancerProvider;
     }
 
-    public FighterEntity create(long userId, InformationEntity informationEntity) {
+    public FighterEntity create(Long userId, InformationEntity informationEntity) {
         FighterEntity fighterEntity = createFighter(userId, informationEntity);
         getEnhancers(informationEntity).forEach(en -> en.improve(fighterEntity.getCharacteristics()));
         return fighterEntity;
     }
 
-    private FighterEntity createFighter(long userId, InformationEntity informationEntity) {
+    private FighterEntity createFighter(Long userId, InformationEntity informationEntity) {
         FighterEntity fighterEntity = new FighterEntity();
         CharacteristicsEntity characteristicsEntity = new CharacteristicsEntity();
         fighterEntity.setId(lastId++);

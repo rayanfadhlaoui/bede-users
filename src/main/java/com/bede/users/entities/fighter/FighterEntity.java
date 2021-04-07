@@ -3,16 +3,16 @@ package com.bede.users.entities.fighter;
 import com.bede.users.entities.fighter.information.InformationEntity;
 
 public class FighterEntity {
-    private long id;
-    private long idMainUser;
+    private Long id;
+    private Long idMainUser;
     private InformationEntity information;
     private CharacteristicsEntity characteristics;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -32,11 +32,11 @@ public class FighterEntity {
         this.characteristics = characteristics;
     }
 
-    public long getIdMainUser() {
+    public Long getIdMainUser() {
         return idMainUser;
     }
 
-    public void setIdMainUser(long idMainUser) {
+    public void setIdMainUser(Long idMainUser) {
         this.idMainUser = idMainUser;
     }
 }

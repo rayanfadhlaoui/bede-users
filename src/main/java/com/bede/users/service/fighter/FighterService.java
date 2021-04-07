@@ -9,9 +9,11 @@ import com.bede.users.mapping.fighter.FighterMapper;
 import com.bede.users.mapping.fighter.information.InformationMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.*;
+
 @Service
 public class FighterService {
-
+    private static final Map<Long, FighterDto> fightersById = new HashMap<>();
     private final InformationMapper informationMapper;
     private final FighterMapper fighterMapper;
     private final FighterFactory fighterFactory;
@@ -24,9 +26,21 @@ public class FighterService {
         this.fighterFactory = fighterFactory;
     }
 
-    public FighterDto create(long userId, InformationDto information) {
+    public FighterDto create(Long userId, InformationDto information) {
         InformationEntity informationEntity = informationMapper.mapToEntity(information);
         FighterEntity fighter = fighterFactory.create(userId, informationEntity);
-        return fighterMapper.mapToDto(fighter);
+
+        FighterDto fighterDto = fighterMapper.mapToDto(fighter);
+        fightersById.put(fighterDto.getId(), fighterDto);
+
+        return fighterDto;
+    }
+
+    public Collection<FighterDto> getAll() {
+        return fightersById.values();
+    }
+
+    public Optional<FighterDto> getMainCharacter(long userId) {
+        return Optional.ofNullable(fightersById.get(userId));
     }
 }

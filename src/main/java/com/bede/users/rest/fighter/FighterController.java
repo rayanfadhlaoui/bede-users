@@ -11,8 +11,6 @@ import java.util.*;
 @RequestMapping(value = "/fighter")
 public class FighterController {
 
-    private static final Map<Long, FighterDto> fightersById = new HashMap<>();
-
     private final FighterService fighterService;
 
     public FighterController(FighterService fighterService) {
@@ -22,23 +20,18 @@ public class FighterController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<FighterDto> create(@RequestBody FighterCreationRequest fighterCreationRequest) {
         FighterDto fighterDto = fighterService.create(fighterCreationRequest.getUserId(), fighterCreationRequest.getInformation());
-        fightersById.put(fighterDto.getId(), fighterDto);
         return ResponseEntity.ok(fighterDto);
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public ResponseEntity<Collection<FighterDto>> getAll() {
-        Collection<FighterDto> allFighters = fightersById.values();
-        return ResponseEntity.ok(allFighters);
+        return ResponseEntity.ok(fighterService.getAll());
     }
 
     @RequestMapping(value = "/mainCharacter/{userId}", method = RequestMethod.GET)
     public ResponseEntity<FighterDto> getMainCharacter(@PathVariable long userId) {
-        return fightersById.values()
-                .stream()
-                .filter(f -> f.getIdMainUser() == userId)
+        return fighterService.getMainCharacter(userId)
                 .map(ResponseEntity::ok)
-                .findFirst()
                 .orElse(ResponseEntity.noContent().build());
     }
 }

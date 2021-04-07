@@ -40,7 +40,7 @@ class FighterFactoryTest {
         informationEntity.setClassEnum(ClassEnum.NO_CLASS);
         informationEntity.setGenderEnum(GenderEnum.FEMALE);
         informationEntity.setRaceEnum(RaceEnum.HUMAN);
-        FighterEntity fighterEntity = fighterFactory.create(1, informationEntity);
+        FighterEntity fighterEntity = fighterFactory.create(1L, informationEntity);
 
         assertThat(fighterEntity.getInformation()).isEqualToComparingFieldByFieldRecursively(informationEntity);
         assertCharacteristics(fighterEntity.getCharacteristics());

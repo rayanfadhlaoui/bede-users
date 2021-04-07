@@ -7,6 +7,7 @@ public class InformationDto {
     private String firstName;
     private String lastName;
     private String race;
+    private Integer age;
     @JsonProperty("class")
     private String fighterClass;
     private String gender;
@@ -59,4 +60,11 @@ public class InformationDto {
         this.gender = gender;
     }
 
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 }

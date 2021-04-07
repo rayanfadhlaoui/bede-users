@@ -4,6 +4,7 @@ public class InformationEntity {
     private long id;
     private String firstName;
     private String lastName;
+    private Integer age;
     private RaceEnum race;
     private ClassEnum classEnum;
     private GenderEnum gender;
@@ -56,4 +57,11 @@ public class InformationEntity {
         this.gender = gender;
     }
 
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 }
